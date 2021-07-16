@@ -1,3 +1,5 @@
+// Função para salvar o usuário no banco de dados
+// Create Update
 function save(e) {
   e.preventDefault();
 
@@ -52,6 +54,7 @@ function save(e) {
   }
 }
 
+// Função para confirmação de exclusão do usuário 
 function showAlertDialog(id, nome, email) {
   Swal.fire({
     title: "Deseja remover?",
@@ -76,6 +79,7 @@ function showAlertDialog(id, nome, email) {
     }
   });
 }
+
 
 function updateUser(id) {
 

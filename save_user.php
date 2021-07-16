@@ -5,6 +5,8 @@ error_reporting(E_ALL);
 
 require "bootstrap.php";
 
+// Recupera as informações do usuário passado por parametro POST
+
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $telefone = $_POST['telefone'];
@@ -13,6 +15,7 @@ $endereco = $_POST['endereco'];
 $numero = $_POST['numero'];
 $bairro = $_POST['bairro'];
 
+// Cria o usuário na base de dados.
 $user = Usuario::create([
     'nome' => $nome,
     'email' => $email,
