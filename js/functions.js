@@ -54,7 +54,7 @@ function save(e) {
   }
 }
 
-// Função para confirmação de exclusão do usuário 
+// Função para confirmação de exclusão do usuário
 function showAlertDialog(id, nome, email) {
   Swal.fire({
     title: "Deseja remover?",
@@ -80,25 +80,61 @@ function showAlertDialog(id, nome, email) {
   });
 }
 
-
 function updateUser(id) {
-
   $.ajax({
     dataType: "json",
     url: `get_user.php?id=${id}`,
-    success: function(data) {
-      document.getElementById("id_user").value = data['id'];
-      document.getElementById("nome").value = data['nome'];
-      document.getElementById("email").value = data['email'];
-      document.getElementById("nome").value = data['nome'];
-      document.getElementById("email").value = data['email'];
-      document.getElementById("telefone").value = data['telefone'];
-      document.getElementById("cep").value = data['cep'];
-      document.getElementById("endereco").value = data['endereco'];
-      document.getElementById("numero").value = data['numero'];
-      document.getElementById("bairro").value = data['bairro'];
-      console.log(data)
-    }
+    success: function (data) {
+      document.getElementById("id_user").value = data["id"];
+      document.getElementById("nome").value = data["nome"];
+      document.getElementById("email").value = data["email"];
+      document.getElementById("nome").value = data["nome"];
+      document.getElementById("email").value = data["email"];
+      document.getElementById("telefone").value = data["telefone"];
+      document.getElementById("cep").value = data["cep"];
+      document.getElementById("endereco").value = data["endereco"];
+      document.getElementById("numero").value = data["numero"];
+      document.getElementById("bairro").value = data["bairro"];
+      console.log(data);
+    },
   });
-
 }
+
+var tooltipTriggerList = [].slice.call(
+  document.querySelectorAll('[data-bs-toggle="tooltip"]')
+);
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl);
+});
+
+var telefone = document.getElementById("telefone");
+var telOptions = {
+  mask: [{ mask: "+{55} (00) 0000-0000" }, { mask: "+{55} (00) 0 0000-0000" }],
+};
+
+var cep = document.getElementById("cep");
+var cepOptions = {
+  mask: "00000-000",
+};
+
+var telMask = IMask(telefone, telOptions);
+var cepMask = IMask(cep, cepOptions);
+
+function getCep() {
+    cep = document.getElementById('cep').value;
+    $.ajax({
+      url: `https://viacep.com.br/ws/${cep}/json/`,
+        success: function (data) {
+        cep = data;
+        if (cep['cep'] != undefined){
+        document.getElementById("cep").value = cep["cep"];
+        document.getElementById("endereco").value = cep["logradouro"];
+        document.getElementById("bairro").value = cep["bairro"];
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  }
+

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,400;0,600;1,400&display=swap');
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+}
 .layout-index {
     margin-top: 10px;
 }
@@ -6,6 +12,23 @@
 }
 
 hr {
+    padding: 2px;
+    width: 100%;
+}
+
+.card {
+    box-shadow: 2px 2px 2px 2px gray;
     padding: 10px;
-    color: green;
+    margin-bottom: 2px;
+}
+
+.data-table {
+    margin: 0 auto;
+    width: 90%;
+}
+
+.title-content {
+    text-align: center;
+    color: #83d339;
+    font-size: 2em !important;
 }
